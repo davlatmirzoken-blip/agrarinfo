@@ -1,7 +1,7 @@
 {
-  "name": "agroinfo-app",
+  "name": "agroinfo",
   "version": "1.0.0",
-  "description": "Agrar AI sayt",
+  "description": "Agrar AI",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
