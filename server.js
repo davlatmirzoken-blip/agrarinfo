@@ -1,17 +1,18 @@
 const express = require('express');
-const fetch = require('node-fetch');
 const path = require('path');
 const app = express();
 
 app.use(express.json());
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/api/chat', async (req, res) => {
     try {
-        const { prompt, lang } = req.body;
-        
-        // Render muhitidagi yashirin (environment) kalitni o'qiydi yoki o'zingiznikini qo'yasiz
-        const GROQ_API_KEY = process.env.GROQ_API_KEY || "SIZNING_API_KALITINGIZ"; 
+        const { prompt } = req.body;
+        const GROQ_API_KEY = process.env.GROQ_API_KEY;
+
+        if (!GROQ_API_KEY) {
+            return res.status(500).json({ error: "GROQ_API_KEY Render panelida kiritilmagan!" });
+        }
 
         const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
             method: "POST",
@@ -29,9 +30,16 @@ app.post('/api/chat', async (req, res) => {
         });
 
         const data = await response.json();
+
+        if (!response.ok) {
+            console.error("Groq API xatoligi:", data);
+            return res.status(500).json({ error: data.error?.message || "Groq API dan xatolik qaytdi" });
+        }
+
         res.json(data);
     } catch (error) {
-        res.status(500).json({ error: "Serverda xatolik yuz berdi" });
+        console.error("Server xatoligi:", error);
+        res.status(500).json({ error: "Serverda ulanish xatoligi yuz berdi" });
     }
 });
 
