@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroInfo - Ekinlar va O'simliklar Ensiklopediyasi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        agroGreen: {
+                            light: '#4ade80',
+                            DEFAULT: '#16a34a',
+                            dark: '#14532d',
+                        },
+                        agroBrown: '#78350f'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <span class="text-3xl">🌱</span>
+                <span class="text-2xl font-bold text-agroGreen-dark" data-lang="logo">AgroInfo</span>
+            </div>
+
+            <!-- Menu -->
+            <nav class="hidden md:flex space-x-8 font-medium">
+                <a href="#" class="text-agroGreen hover:text-agroGreen-dark transition" data-lang="menu_home">Bosh sahifa</a>
+                <a href="#" class="text-slate-600 hover:text-agroGreen transition" data-lang="menu_crops">Ekinlar</a>
+                <a href="#" class="text-slate-600 hover:text-agroGreen transition" data-lang="menu_care">Parvarish</a>
+                <a href="#" class="text-slate-600 hover:text-agroGreen transition" data-lang="menu_diseases">Kasalliklar</a>
+                <a href="#" class="text-slate-600 hover:text-agroGreen transition" data-lang="menu_contact">Bog'lanish</a>
+            </nav>
+
+            <!-- Language Switcher -->
+            <div class="flex items-center space-x-2">
+                <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-slate-100 border border-slate-300 rounded-lg px-3 py-1.5 text-sm font-semibold text-slate-700 focus:outline-none focus:border-agroGreen">
+                    <option value="uz">O'Z</option>
+                    <option value="ru">РУС</option>
+                    <option value="en">ENG</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-agroGreen-dark text-white py-24 px-4 sm:px-6 lg:px-8 bg-cover bg-center" style="background-image: linear-gradient(rgba(20, 83, 45, 0.85), rgba(20, 83, 45, 0.85)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1920&q=80');">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6" data-lang="hero_title">
+                O'simliklar va Ekinlar Olami
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-200 mb-10" data-lang="hero_subtitle">
+                Fermerlar va dehqonlar uchun eng so'nggi agrotexnik tavsiyalar, ekinlar katalogi va kasalliklarga qarshi kurash choralari.
+            </p>
+            <!-- Search Bar -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-3">
+                <input type="text" data-lang-placeholder="search_placeholder" placeholder="Ekin yoki o'simlik nomini kiriting..." class="w-full sm:w-96 px-4 py-3 rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-agroGreen-light shadow-lg">
+                <button class="w-full sm:w-auto bg-agroGreen hover:bg-agroGreen-light text-white font-semibold px-8 py-3 rounded-xl shadow-lg transition" data-lang="search_btn">Qidirish</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES SECTION -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 class="text-3xl font-bold text-center text-slate-800 mb-12" data-lang="cat_title">Asosiy Kategoriyalar</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition border border-slate-100 text-center">
+                <div class="text-5xl mb-4">🌾</div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2" data-lang="cat_1_title">Donli ekinlar</h3>
+                <p class="text-slate-600 text-sm" data-lang="cat_1_desc">Bug'doy, makkajo'xori, sholi va boshqalar.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition border border-slate-100 text-center">
+                <div class="text-5xl mb-4">🍅</div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2" data-lang="cat_2_title">Sabzavotlar</h3>
+                <p class="text-slate-600 text-sm" data-lang="cat_2_desc">Pomidor, bodring, kartoshka va poliz ekinlari.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition border border-slate-100 text-center">
+                <div class="text-5xl mb-4">🍎</div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2" data-lang="cat_3_title">Mevali daraxtlar</h3>
+                <p class="text-slate-600 text-sm" data-lang="cat_3_desc">Olma, olcha, o'rik va mevali bog'dorchilik.</p>
+            </div>
+            <!-- Card 4 -->
+            <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition border border-slate-100 text-center">
+                <div class="text-5xl mb-4">🌿</div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2" data-lang="cat_4_title">Texnik ekinlar</h3>
+                <p class="text-slate-600 text-sm" data-lang="cat_4_desc">Paxta, kungaboqar, soya va boshqa sanoat ekinlari.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center">
+        <p data-lang="footer_text">&copy; 2026 AgroInfo. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+    <!-- JAVASCRIPT FOR MULTI-LANGUAGE SWITCHING -->
+    <script>
+        const translations = {
+            uz: {
+                logo: "AgroInfo",
+                menu_home: "Bosh sahifa",
+                menu_crops: "Ekinlar",
+                menu_care: "Parvarish",
+                menu_diseases: "Kasalliklar",
+                menu_contact: "Bog'lanish",
+                hero_title: "O'simliklar va Ekinlar Olami",
+                hero_subtitle: "Fermerlar va dehqonlar uchun eng so'nggi agrotexnik tavsiyalar, ekinlar katalogi va kasalliklarga qarshi kurash choralari.",
+                search_placeholder: "Ekin yoki o'simlik nomini kiriting...",
+                search_btn: "Qidirish",
+                cat_title: "Asosiy Kategoriyalar",
+                cat_1_title: "Donli ekinlar",
+                cat_1_desc: "Bug'doy, makkajo'xori, sholi va boshqalar.",
+                cat_2_title: "Sabzavotlar",
+                cat_2_desc: "Pomidor, bodring, kartoshka va poliz ekinlari.",
+                cat_3_title: "Mevali daraxtlar",
+                cat_3_desc: "Olma, olcha, o'rik va mevali bog'dorchilik.",
+                cat_4_title: "Texnik ekinlar",
+                cat_4_desc: "Paxta, kungaboqar, soya va boshqa sanoat ekinlari.",
+                footer_text: "© 2026 AgroInfo. Barcha huquqlar himoyalangan."
+            },
+            ru: {
+                logo: "AgroInfo",
+                menu_home: "Главная",
+                menu_crops: "Культуры",
+                menu_care: "Уход",
+                menu_diseases: "Болезни",
+                menu_contact: "Контакты",
+                hero_title: "Мир Растений и Культур",
+                hero_subtitle: "Новейшие агротехнические рекомендации, каталог культур и методы защиты от болезней для фермеров.",
+                search_placeholder: "Введите название культуры или растения...",
+                search_btn: "Поиск",
+                cat_title: "Основные категории",
+                cat_1_title: "Зерновые культуры",
+                cat_1_desc: "Пшеница, кукуруза, рис и другие.",
+                cat_2_title: "Овощи",
+                cat_2_desc: "Помидоры, огурцы, картофель и бахчевые.",
+                cat_3_title: "Фруктовые деревья",
+                cat_3_desc: "Яблони, вишня, абрикос и садоводство.",
+                cat_4_title: "Технические культуры",
+                cat_4_desc: "Хлопчатник, подсолнечник, соя и промышленные культуры.",
+                footer_text: "© 2026 AgroInfo. Все права защищены."
+            },
+            en: {
+                logo: "AgroInfo",
+                menu_home: "Home",
+                menu_crops: "Crops",
+                menu_care: "Care Guide",
+                menu_diseases: "Pests & Diseases",
+                menu_contact: "Contact",
+                hero_title: "World of Plants and Crops",
+                hero_subtitle: "Latest agrotechnical advice, crop catalogs, and disease control guidelines for farmers and growers.",
+                search_placeholder: "Enter crop or plant name...",
+                search_btn: "Search",
+                cat_title: "Main Categories",
+                cat_1_title: "Cereals",
+                cat_1_desc: "Wheat, corn, rice, and others.",
+                cat_2_title: "Vegetables",
+                cat_2_desc: "Tomatoes, cucumbers, potatoes, and melons.",
+                cat_3_title: "Fruit Trees",
+                cat_3_desc: "Apples, cherries, apricots, and orcharding.",
+                cat_4_title: "Industrial Crops",
+                cat_4_desc: "Cotton, sunflower, soybean, and industrial crops.",
+                footer_text: "© 2026 AgroInfo. All rights reserved."
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll("[data-lang]").forEach(element => {
+                const key = element.getAttribute("data-lang");
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll("[data-lang-placeholder]").forEach(element => {
+                const key = element.getAttribute("data-lang-placeholder");
+                if (translations[lang][key]) {
+                    element.placeholder = translations[lang][key];
+                }
+            });
+
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+</html>
